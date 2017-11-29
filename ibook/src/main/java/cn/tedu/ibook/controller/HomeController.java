@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	//转向欢迎页面
-	@RequestMapping("home")
+	@RequestMapping("/home")
 	public String home(){
 		return "/home/home";
 	}

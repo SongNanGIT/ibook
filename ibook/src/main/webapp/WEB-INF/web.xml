@@ -38,8 +38,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring/springmvc-config.xml</param-value>
 		</init-param>
-		<!-- 工程开启时加载此Servlet 
-		数值大于0的整数，代表工程开始就加载 数值越小优先级越高  -->
+		<!-- 工程开启时加载此Servlet 数值大于0的整数，代表工程开始就加载 数值越小优先级越高 -->
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -47,9 +46,24 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+
+	<filter>
+		<!-- 此处的name 要和配置文件中 filter工厂的id一样 -->
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<!-- 让shiro过滤器的生命周期 交给web容器管理 -->
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>
